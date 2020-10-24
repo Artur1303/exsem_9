@@ -5,10 +5,10 @@
 
 {% block menu %}
     {% if perms.webapp.change_photo %}
-        <li><a href='#'>Update</a></li>
+        <li><a href='{% url 'webapp:foto_update' fotos.pk%}'>Update</a></li>
     {% endif %}
     {% if perms.webapp.delete_photo %}
-        <li><a href="#">Delete</a></li>
+        <li><a href="{% url 'webapp:foto_delete' fotos.pk %}">Delete</a></li>
     {% endif %}
 {#    {% if perms.webapp.add_product%}#}
 {#        <li><a href="{% url 'webapp:product_add' %}">Create</a></li>#}
