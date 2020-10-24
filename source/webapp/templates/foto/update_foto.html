@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Update{% endblock %}
+
+{% block menu %}
+    <li><a href="{% url 'webapp:foto_view' foto.pk %}">Отмена</a></li>
+{% endblock %}
+
+{% block content %}
+    <h1>Update Photo</h1>
+
+    {% url "webapp:foto_update" pk=fotos.pk as action_url %}
+    {% include 'partial/form.html' with action_url=action_url form_method='post' button_text='Update' enctype="multipart/form-data" %}
+{% endblock %}

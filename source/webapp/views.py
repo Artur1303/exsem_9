@@ -31,3 +31,16 @@ class PhotoCreateView(PermissionRequiredMixin, CreateView):
     def get_success_url(self):
         return reverse('webapp:foto_view', kwargs={'pk': self.object.pk})
 
+class PhotoUpdateView(PermissionRequiredMixin, UpdateView):
+    model = Photo
+    template_name = 'foto/update_foto.html'
+    form_class = PhotoForm
+    context_object_name = 'foto'
+    permission_required = 'webapp.change_foto'
+
+    def get_success_url(self):
+        return reverse('webapp:foto_view', kwargs={'pk': self.object.pk})
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)

@@ -3,7 +3,7 @@
 {% block title %}{{ fotos.name }}{% endblock %}
 
 {% block menu %}
-    {% if perms.webapp.change_product %}
+    {% if perms.webapp.change_foto %}
         <li><a href='#'>Update</a></li>
     {% endif %}
     {% if perms.webapp.delete_product %}

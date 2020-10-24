@@ -18,6 +18,7 @@
 
         {% if perms.webapp.delete_review %}
             <li><a href="{% url 'webapp:foto_create'%}">CreatFoto</a></li>
+            <li><a href="{% url 'webapp:foto_update' foto.pk%}">UpdateFoto</a></li>
             <li><a href="#">Delete</a></li>
         {% endif %}
 
