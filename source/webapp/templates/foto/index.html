@@ -3,7 +3,7 @@
 {% endblock %}
 {% block content %}
     <h1>Галерея</h1>
-    
+
     {% for foto in fotos %}
         <div class="box">
 
@@ -15,8 +15,10 @@
             {% endif %}
 
         {% if perms.webapp.delete_photo %}
+            <li><a class="like" href="{% url 'api:favorites_create' foto.pk%}">CreatFavorites</a></li>
+            <li><a class="unlike" href="{% url 'api:favorites_delete' foto.pk%}">DeleteFavorites</a></li>
             <li><a href="{% url 'webapp:foto_create'%}">CreatFoto</a></li>
-            <li><a href="{% url 'webapp:foto_update' foto.pk%}">UpdateFoto</a></li>
+            <li><a href="{% url 'webapp:foto_update' foto.pk%}">Update</a></li>
             <li><a href="{% url 'webapp:foto_delete' foto.pk %}">Delete</a></li>
         {% endif %}
 
