@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-
+from webapp.forms import PhotoForm
 from webapp.models import Photo
 
 
@@ -16,3 +16,18 @@ class PhotoView(DetailView):
     template_name = 'foto/foto_view.html'
     context_object_name = 'fotos'
     model = Photo
+
+
+class PhotoCreateView(PermissionRequiredMixin, CreateView):
+    model = Photo
+    template_name = 'foto/create_foto.html'
+    form_class = PhotoForm
+    permission_required = 'webapp.add_foto'
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse('webapp:foto_view', kwargs={'pk': self.object.pk})
+
