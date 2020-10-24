@@ -26,7 +26,7 @@ class DeleteView(APIView):
 
     @method_decorator(ensure_csrf_cookie)
     def delete(self, request, pk=None):
-        favorites = get_object_or_404(Favorites, photo_id=pk)
+        favorites = get_object_or_404(Favorites, photo_id=pk, author=request.user)
         favorites.delete()
         return Response({'pk': pk})
 
