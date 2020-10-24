@@ -6,9 +6,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from webapp.models import Photo, Favorites
 
-
-
-
 class CreateView(APIView):
     permission_classes = [IsAuthenticated]
 

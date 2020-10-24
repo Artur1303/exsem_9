@@ -11,6 +11,10 @@ class Photo(models.Model):
     author = models.ForeignKey(User, max_length=50, verbose_name='Автор', related_name='photos_author',
                                on_delete=models.CASCADE)
 
+    def liked_by(self, user):
+        likes = self.favorite_photo.filter(author=user)
+        return likes.count() > 0
+
     def __str__(self):
         return self.signature
 

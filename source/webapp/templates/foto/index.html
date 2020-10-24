@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load likes %}
     {% block menu %}
 {% endblock %}
 {% block content %}
@@ -15,13 +16,20 @@
             {% endif %}
 
         {% if perms.webapp.delete_photo %}
-            <li><a class="like" href="{% url 'api:favorites_create' foto.pk%}">CreatFavorites</a></li>
-            <li><a class="unlike" href="{% url 'api:favorites_delete' foto.pk%}">DeleteFavorites</a></li>
+{#            <li><a class="add" href="{% url 'api:favorites_create' foto.pk%}">CreatFavorites</a></li>#}
+{#            <li><a class="delete" href="{% url 'api:favorites_delete' foto.pk%}">DeleteFavorites</a></li>#}
             <li><a href="{% url 'webapp:foto_create'%}">CreatFoto</a></li>
             <li><a href="{% url 'webapp:foto_update' foto.pk%}">Update</a></li>
             <li><a href="{% url 'webapp:foto_delete' foto.pk %}">Delete</a></li>
         {% endif %}
-
-        </div>
+          {% if user.is_authenticated %}
+                    <li>
+                        {% with foto|liked_by:user as liked %}
+                     <a class="{% if liked %}hidden{% endif %} add " href="{% url 'api:favorites_create' foto.pk %}">CreatFavorites</a>
+                     <a class="{% if not liked %}hidden{% endif %} delete" href="{% url  'api:favorites_delete' foto.pk %}">DeleteFavorites</a>
+                        {% endwith %}
+                    </li>
+                {% endif %}
+            </div>
     {% endfor %}
 {% endblock %}

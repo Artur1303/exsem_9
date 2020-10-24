@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
+
+{% load staticfiles likes  %}
 {% block title %}{{ fotos.name }}{% endblock %}
 
 {% block menu %}
@@ -23,13 +24,22 @@
     <p><b>Author: </b>{{ fotos.author }}</p>
      <p><b>Signature: </b>{{ fotos.signature }}</p>
     <p><b>Created at: </b>{{ fotos.created_at }}</p>
-    <li><a href="{% url 'webapp:foto_update' fotos.pk%}"class="btn bg-primary" >Update</a></li>
+{#    <a class="add btn bg-primary" href="{% url 'api:favorites_create' fotos.pk%}">CreatFavorites</a>#}
+{#    <a class="delete btn bg-danger" href="{% url 'api:favorites_delete' fotos.pk%}">DeleteFavorites</a>#}
+
     <br>
-    <li><a href="{% url 'webapp:foto_delete' fotos.pk %}"class="btn bg-danger">Delete</a></li>
 
 
+ {% if user.is_authenticated %}
 
+                        {% with fotos|liked_by:user as liked %}
+                     <a class="{% if liked %}hidden{% endif %} add  btn bg-primary" href="{% url 'api:favorites_create' fotos.pk %}">CreatFavorites</a>
+                     <a class="{% if not liked %}hidden{% endif %} delete btn bg-danger" href="{% url  'api:favorites_delete' fotos.pk %}">DeleteFavorites</a>
+                        {% endwith %}
 
-
-
+                {% endif %}
+    <br>
+    <br>
+   <p> <a href="{% url 'webapp:foto_update' fotos.pk%}" class="btn bg-primary" >Update</a></p>
+    <p><a href="{% url 'webapp:foto_delete' fotos.pk %}" class="btn bg-danger">Delete</a></p>
 {% endblock %}

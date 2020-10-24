@@ -60,7 +60,7 @@ async function onAdd(event) {
 
     addBtn.classList.add('hidden');
     const deleteBtn = addBtn.parentElement
-        .getElementsByClassName('like')[0];
+        .getElementsByClassName('delete')[0];
     deleteBtn.classList.remove('hidden');
 }
 
@@ -80,13 +80,13 @@ async function onDelete(event) {
 
     deleteBtn.classList.add('hidden');
     const addBtn = deleteBtn.parentElement
-        .getElementsByClassName('like')[0];
+        .getElementsByClassName('add')[0];
    addBtn.classList.remove('hidden');
 }
 
 window.addEventListener('load', function() {
-    const addButtons = document.getElementsByClassName('like');
-    const deleteButtons = document.getElementsByClassName('unlike');
+    const addButtons = document.getElementsByClassName('add');
+    const deleteButtons = document.getElementsByClassName('delete');
 
     for (let btn of addButtons) {btn.onclick = onAdd}
     for (let btn of deleteButtons) {btn.onclick = onDelete}
