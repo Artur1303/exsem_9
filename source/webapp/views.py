@@ -22,7 +22,7 @@ class PhotoCreateView(PermissionRequiredMixin, CreateView):
     model = Photo
     template_name = 'foto/create_foto.html'
     form_class = PhotoForm
-    permission_required = 'webapp.add_foto'
+    permission_required = 'webapp.add_photo'
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -30,13 +30,14 @@ class PhotoCreateView(PermissionRequiredMixin, CreateView):
 
     def get_success_url(self):
         return reverse('webapp:foto_view', kwargs={'pk': self.object.pk})
+
 
 class PhotoUpdateView(PermissionRequiredMixin, UpdateView):
     model = Photo
     template_name = 'foto/update_foto.html'
     form_class = PhotoForm
     context_object_name = 'foto'
-    permission_required = 'webapp.change_foto'
+    permission_required = 'webapp.change_photo'
 
     def get_success_url(self):
         return reverse('webapp:foto_view', kwargs={'pk': self.object.pk})
@@ -44,3 +45,12 @@ class PhotoUpdateView(PermissionRequiredMixin, UpdateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+
+class PhotoDeleteView(PermissionRequiredMixin, DeleteView):
+    model = Photo
+    pk_kwargs_url = 'pk'
+    template_name = 'foto/delete_foto.html'
+    context_object_name = 'foto'
+    success_url = reverse_lazy('webapp:index')
+    permission_required = 'webapp.delete_photo'

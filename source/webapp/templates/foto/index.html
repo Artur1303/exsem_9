@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-
+    {% block menu %}
+{% endblock %}
 {% block content %}
     <h1>Галерея</h1>
-    {% block menu %}
 
-{% endblock %}
+
 
     {% for foto in fotos %}
         <div class="box">
@@ -12,14 +12,14 @@
             <img src="{{ foto.image.url }}" width="250" height="250"alt="photo">
             <br>
 
-            {% if perms.webapp.change_review %}
+            {% if perms.webapp.change_photo %}
              <li><a href="{% url 'webapp:foto_view' foto.pk %}">View</a></li>
             {% endif %}
 
-        {% if perms.webapp.delete_review %}
+        {% if perms.webapp.delete_photo %}
             <li><a href="{% url 'webapp:foto_create'%}">CreatFoto</a></li>
             <li><a href="{% url 'webapp:foto_update' foto.pk%}">UpdateFoto</a></li>
-            <li><a href="#">Delete</a></li>
+            <li><a href="{% url 'webapp:foto_delete' foto.pk %}">Delete</a></li>
         {% endif %}
 
         </div>
