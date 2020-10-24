@@ -1,0 +1,74 @@
+[
+{
+  "model": "webapp.photo",
+  "pk": 2,
+  "fields": {
+    "image": "gallery-images/i.jpeg",
+    "signature": "\u041c\u0438\u0448\u043a\u0430",
+    "created_at": "2020-10-24T05:45:57.192Z",
+    "author": 1
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 3,
+  "fields": {
+    "image": "gallery-images/img_0_77_2343_0_6_320.webp",
+    "signature": "\u0412\u0435\u0440\u0442\u043e\u043b\u0435\u0442",
+    "created_at": "2020-10-24T07:07:43.806Z",
+    "author": 1
+  }
+},
+{
+  "model": "webapp.photo",
+  "pk": 6,
+  "fields": {
+    "image": "gallery-images/683251.jpg",
+    "signature": "\u0412\u0435\u0440\u0442\u043e\u043b\u0435\u0442\u0438\u043a",
+    "created_at": "2020-10-24T08:17:34.833Z",
+    "author": 2
+  }
+},
+{
+  "model": "webapp.favorites",
+  "pk": 16,
+  "fields": {
+    "photo": 6,
+    "author": 1
+  }
+},
+{
+  "model": "webapp.favorites",
+  "pk": 39,
+  "fields": {
+    "photo": 2,
+    "author": 1
+  }
+},
+{
+  "model": "webapp.favorites",
+  "pk": 42,
+  "fields": {
+    "photo": 3,
+    "author": 1
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 1,
+  "fields": {
+    "user": 2,
+    "birth_date": null,
+    "avatar": "user_pics/lion-space-digital-art-photo-manipulation.jpeg"
+  }
+},
+{
+  "model": "accounts.profile",
+  "pk": 2,
+  "fields": {
+    "user": 1,
+    "birth_date": "2020-10-24",
+    "avatar": "user_pics/lion-space-digital-art-photo-manipulation_lDihysn.jpeg"
+  }
+}
+]
