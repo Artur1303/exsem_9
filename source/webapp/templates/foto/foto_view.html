@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title %}{{ fotos.name }}{% endblock %}
+
+{% block menu %}
+    {% if perms.webapp.change_product %}
+        <li><a href='#'>Update</a></li>
+    {% endif %}
+    {% if perms.webapp.delete_product %}
+        <li><a href="#">Delete</a></li>
+    {% endif %}
+{#    {% if perms.webapp.add_product%}#}
+{#        <li><a href="{% url 'webapp:product_add' %}">Create</a></li>#}
+{#    {% endif %}#}
+{% endblock %}
+
+{% block content %}
+
+         <h1 class="text-center">Gallery</h1>
+    <hr/>
+    <img src="{{ fotos.image.url }}" alt="photo" width="200px" height="200">
+
+    <p><b>Author: </b>{{ fotos.author }}</p>
+     <p><b>Signature: </b>{{ fotos.signature }}</p>
+    <p><b>Created at: </b>{{ fotos.created_at }}</p>
+    <p><a href="#" class="btn btn-default">Edit</a></p>
+    <p><a href="#" class="btn btn-danger">Delete</a></p>
+
+
+
+
+
+
+{% endblock %}
