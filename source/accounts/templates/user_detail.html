@@ -11,15 +11,25 @@
 
 {% block content %}
     <h1>Личная страница пользователя {{ user_obj.get_full_name|default:user_obj.username }}</h1>
-    {% if user_obj.profile.avatar %}
+      {% if user_obj.profile.avatar %}
         <img class="avatar" src="{{ user_obj.profile.avatar.url }}" width="250" height="250" alt="user picture">
     {% endif %}
+
     <p>Имя пользователя: {{ user_obj.username }}</p>
     <p>Имя: {{ user_obj.first_name }}</p>
     <p>Фамилия: {{ user_obj.last_name }}</p>
-    <p>Дата рождения: {{ user_obj.profile.birth_date|date:'d.m.Y' }}</p>
     <p>Почта: {{ user_obj.email }}</p>
 
-{#    <h2 class="text-center clear">Статьи автора:</h2>#}
-{#    {% include 'partial/article_list.html' %}#}
+       <h1>Избранное</h1>
+ {% for i in user_obj.favorite_author.all %}
+
+ <div class="box">
+        <img class="avatar" src="{{i.photo.image.url}}" width="250" height="250" alt="user picture">
+    <p><b>Author: </b>{{ i.photo.author }}</p>
+     <p><b>Signature: </b>{{ i.photo.signature }}</p>
+    <p><b>Created at: </b>{{ i.photo.created_at }}</p>
+</div>
+{% endfor %}
+
+
 {% endblock %}

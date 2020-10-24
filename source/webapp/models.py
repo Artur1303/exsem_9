@@ -1,3 +1,4 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -16,3 +17,13 @@ class Photo(models.Model):
     class Meta:
         verbose_name = 'Фото'
         verbose_name_plural = 'Фотографии'
+
+
+class Favorites(models.Model):
+    photo = models.ForeignKey(Photo, related_name='favorite_photo', verbose_name='Фото', on_delete=models.CASCADE)
+    author = models.ForeignKey(get_user_model(), related_name='favorite_author',
+                               verbose_name='Автор', on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'Избранное'
+        verbose_name_plural = 'Избранные'

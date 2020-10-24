@@ -23,8 +23,9 @@
     <p><b>Author: </b>{{ fotos.author }}</p>
      <p><b>Signature: </b>{{ fotos.signature }}</p>
     <p><b>Created at: </b>{{ fotos.created_at }}</p>
-    <p><a href="#" class="btn btn-default">Edit</a></p>
-    <p><a href="#" class="btn btn-danger">Delete</a></p>
+    <li><a href="{% url 'webapp:foto_update' fotos.pk%}"class="btn bg-primary" >Update</a></li>
+    <br>
+    <li><a href="{% url 'webapp:foto_delete' fotos.pk %}"class="btn bg-danger">Delete</a></li>
 
 
 
